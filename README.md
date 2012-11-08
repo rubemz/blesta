@@ -4,17 +4,21 @@ API documentation: http://www.blesta.com/wp-content/uploads/2009/12/Blesta_Resel
 
 ## Goal
 
-Implement that following methods
+### Round 1
+* Add License - addlicense
+* Cancel License - cancellicense
+* Update Domain - updatedomain
 
-  * Get Credit - getcredit
-  * Get Licenses - getlicenses
-  * Get Packages - getpackages
-  * Add License - addlicense
-  * Cancel License - cancellicense
-  * Suspend License - suspendlicense
-  * Unsuspend License - unsuspendlicense
-  * Search Licenses - searchlicenses
-  * Update Domain - updatedomain
+### Round 2
+* Suspend License - suspendlicense
+* Unsuspend License - unsuspendlicense
+
+### Round 3
+* Get Credit - getcredit
+* Get Licenses - getlicenses
+* Get Packages - getpackages
+* Search Licenses - search licenses
+
 
 
 ## Requirements
