@@ -2,7 +2,7 @@
 
 API documentation: http://www.blesta.com/wp-content/uploads/2009/12/Blesta_Reseller_API_Documentation.pdf
 
-# Goal
+## Goal
 
 Implement that following methods
 
@@ -17,7 +17,7 @@ Implement that following methods
   * Update Domain - updatedomain
 
 
-# Requirements
+## Requirements
 
  * [faraday](https://github.com/site5/squall/blob/master/lib/squall/support/base.rb#L43-55)
  * RSpec
