@@ -1,0 +1,8 @@
+pkg/*
+*.gem
+.bundle
+*.swp
+*~
+doc/
+TODO
+Gemfile.lock
