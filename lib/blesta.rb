@@ -1,7 +1,10 @@
+require 'faraday'
+require 'faraday_middleware'
 require 'blesta/support/version'
 
 module Blesta
   autoload :Config,     'blesta/support/config'
+  autoload :Base,       'blesta/support/base'
 
   # Config
   extend self
@@ -13,13 +16,11 @@ module Blesta
 
   # Public: Specificy the config via block
   #
-  # ==== Attributes
+  # base_uri - URL of your Blesta Resellers API`
+  # uid      - API UID
+  # password - API Password
   #
-  # * +base_uri+ - URL of your Blesta Resellers API`
-  # * +uid+ - API UID
-  # * +password+ - API Password
-  #
-  # ==== Example
+  # Examples
   #
   #   Blesta.config do |c|
   #     c.base_uri 'http://test.com/reseller'

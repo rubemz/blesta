@@ -9,9 +9,7 @@ module Blesta
 
     # Public: get the configuration value
     #
-    # ==== Attributes
-    #
-    # * +configuration+ - the configuration key
+    # configuration - the configuration key
     #
     # Returns the configuration value or nil if it has not been set
     def [](configuration)
@@ -20,9 +18,7 @@ module Blesta
 
     # Public: set the base uri for Blesta resellers API
     #
-    # ==== Attributes
-    #
-    # * +value+ - uri for Blesta resellers API
+    # value - uri for Blesta resellers API
     #
     # Returns the given base uri
     def base_uri(value)
@@ -31,9 +27,7 @@ module Blesta
 
     # Public: set the Blesta reseller UID
     #
-    # ==== Attributes
-    #
-    # * +value+ - UID for Blesta resellers API
+    # value - UID for Blesta resellers API
     #
     # Returns the given UID
     def uid(value)
@@ -42,9 +36,7 @@ module Blesta
 
     # Public: set the Blesta reseller password
     #
-    # ==== Attributes
-    #
-    # * +value+ - password for Blesta resellers API
+    # value - password for Blesta resellers API
     #
     # Returns the given password
     def password(value)
