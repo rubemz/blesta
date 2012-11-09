@@ -5,6 +5,7 @@ require 'blesta/support/version'
 module Blesta
   autoload :Config,     'blesta/support/config'
   autoload :Base,       'blesta/support/base'
+  autoload :License,    'blesta/license'
 
   # Config
   extend self
