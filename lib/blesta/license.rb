@@ -82,8 +82,23 @@ module Blesta
       response_data_or_error response
     end
 
-    private
+    # Public: Search through all available licenses for a match
+    #
+    # term    - either a domain or license, depending on the search type
+    # options - hash options (default: {}):
+    #           :type - domain or license as string (required)
+    #           :page - the page of results to return. Results are limited to
+    #                   25 per page (optional)
+    #
+    # Returns a list of licenses that matched the criteria
+    def search(term, options={})
+      search_params = { :action => "searchlicenses",
+        :search => { options[:type] => term}}.merge(options)
+      response = request :get, '', {:query => search_params}
+      response_data_or_error response
+    end
 
+    private
     # Private: Makes a basic license request
     #
     # license_id: The license id
@@ -93,7 +108,7 @@ module Blesta
     # contains the error code and message
     def basic_request(license_id, action)
       params = { :action => action, :license => license_id,
-        :test_mode => test_mode }
+        :test_mode => test_mode.to_s }
       response = request :get, '', {:query => params}
       response_data_or_error response
     end

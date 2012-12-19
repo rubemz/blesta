@@ -99,7 +99,7 @@ end
 
     context 'on test mode' do
       it 'sends the test mode parameter' do
-        test_mode_params = params.merge({:test_mode => true})
+        test_mode_params = params.merge({:test_mode => "true"})
         response = blesta_successful_response []
         stub_faraday_request(test_mode_params, response)
 
@@ -125,7 +125,7 @@ end
 
       context 'on test mode' do
         it 'sends the test mode parameter' do
-          test_mode_params = params.merge({:test_mode => true})
+          test_mode_params = params.merge({:test_mode => "true"})
           response = blesta_successful_response nil
           stub_faraday_request(test_mode_params, response)
 
@@ -234,4 +234,42 @@ end
     end
   end
 
+  describe "#search" do
+    context 'on success' do
+      it 'returns a list of licenses that match the given domains' do
+        params = {"action" => "searchlicenses", "search" =>
+          { "domain" => "mydomain.com" }}
+        stub_faraday_request(params, getlicenses_search_response)
+
+        response = license.search "mydomain.com", :type => 'domain'
+        faraday_request_stub.verify_stubbed_calls
+        license.should be_successful
+        response.should have(2).items
+      end
+
+      it 'returns a list of licenses that match the given licenses id' do
+        params = {"action" => "searchlicenses", "search" =>
+          { "license" => "ABCDEFGH12345678" }}
+        stub_faraday_request(params, getlicenses_search_response)
+
+        response = license.search "ABCDEFGH12345678", :type => 'license'
+        faraday_request_stub.verify_stubbed_calls
+        license.should be_successful
+        response.should have(2).items
+      end
+    end
+    context 'on error' do
+      it 'returns a hash that contains the error code and message' do
+        params = {"action" => "searchlicenses", "search" =>
+          { "license" => "ABCDEFGH12345678" }}
+        response = blesta_unsuccessful_response "100","Authentication failed"
+        stub_faraday_request(params, response)
+
+        response = license.search "ABCDEFGH12345678", :type => 'license'
+        license.should_not be_successful
+        response[:error_code].should == "100"
+        response[:message].should    == "Authentication failed"
+      end
+    end
+  end
 end
