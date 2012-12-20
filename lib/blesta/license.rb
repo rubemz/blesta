@@ -15,7 +15,7 @@ module Blesta
     #
     # Returns a hash where the keys are the license IDs
     def all
-      response = request :get, '', {:query => {:action=> 'getlicenses'}}
+      response = request(:get, '', {:query => {:action=> 'getlicenses'}})
       response_data_or_error response
     end
 
@@ -32,7 +32,7 @@ module Blesta
 
       license_params = { :term =>term, :action=>'addlicense',
         :test_mode => test_mode }.merge(options)
-      response = request :get, '', {:query => license_params}
+      response = request(:get, '', {:query => license_params})
       response_data_or_error response do
           response['data'].first
       end
@@ -45,7 +45,7 @@ module Blesta
     # Returns nil. In case of error, it returns a hash that contains the
     # error code and message
     def cancel(license_id)
-      basic_request license_id, "cancellicense"
+      basic_request(license_id, "cancellicense")
     end
 
     # Public: Indefinitely suspend a license
@@ -55,7 +55,7 @@ module Blesta
     # Returns nil. In case of error, it returns a hash that contains the
     # error code and message
     def suspend(license_id)
-      basic_request license_id, "suspendlicense"
+      basic_request(license_id, "suspendlicense")
     end
 
     # Public: Unsuspend a previously suspended license
@@ -78,7 +78,7 @@ module Blesta
     def update_domain(license_id, options={})
       update_params = { :action => "updatedomain",
         :license => license_id }.merge(options)
-      response = request :get, '', {:query => update_params}
+      response = request(:get, '', {:query => update_params})
       response_data_or_error response
     end
 
@@ -94,7 +94,7 @@ module Blesta
     def search(term, options={})
       search_params = { :action => "searchlicenses",
         :search => { options[:type] => term}}.merge(options)
-      response = request :get, '', {:query => search_params}
+      response = request(:get, '', {:query => search_params})
       response_data_or_error response
     end
 
@@ -109,7 +109,7 @@ module Blesta
     def basic_request(license_id, action)
       params = { :action => action, :license => license_id,
         :test_mode => test_mode.to_s }
-      response = request :get, '', {:query => params}
+      response = request(:get, '', {:query => params})
       response_data_or_error response
     end
   end
