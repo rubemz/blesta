@@ -60,12 +60,28 @@ def getlicenses_response
   blesta_successful_response license_response
 end
 
+def getlicenses_search_response
+  search_response = [{
+    "id" => "616",
+    "domain" => "mydomain.com",
+    "license" => "ABCDEFGH01234567",
+    "last_callback" => "",
+    "term" => "0"
+  },{
+    "id" => "617",
+    "domain" => "test.com",
+    "license" => "ABCDEFGH01234568",
+    "last_callback" => "",
+    "term" => "0"
+  }]
+  blesta_successful_response search_response
+end
+
 def build_query_params(params={})
   base = Blesta::Base.new
   params = params.merge base.authentication_params
-  "?" + params.keys.reverse.map do |key|
-    "#{CGI::escape(key.to_s)}=#{CGI::escape(params[key].to_s)}"
-  end.join('&')
+  require 'active_support/core_ext'
+  "?#{params.to_query}"
 end
 
 def mock_blesta_request(body, params = {})
