@@ -7,6 +7,7 @@ module Blesta
   autoload :Base,       'blesta/support/base'
   autoload :License,    'blesta/license'
   autoload :Package,    'blesta/package'
+  autoload :Credit,     'blesta/credit'
 
   # Config
   extend self
