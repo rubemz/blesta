@@ -19,7 +19,9 @@ module Blesta
       response_data_or_error response
     end
 
-    # Public: Adds a new license
+    # Public: Adds a new license. Even though the Blesta Reseller API
+    # documentation states that the addlicense returns a list of licenses, in
+    # fact, it just returns a license object.
     #
     # term      - The term that should apply to this license. Options are:
     # owned, monthly, yearly
@@ -33,9 +35,7 @@ module Blesta
       license_params = { :term =>term, :action=>'addlicense',
         :test_mode => test_mode }.merge(options)
       response = request(:get, '', {:query => license_params})
-      response_data_or_error response do
-          response['data'].first
-      end
+      response_data_or_error response
     end
 
     # Public: Permanently cancels the given license

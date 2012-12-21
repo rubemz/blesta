@@ -55,8 +55,8 @@ end
 
     context "on success" do
       before do
-        response = blesta_successful_response [{"license"=>"ABCDEFGH12345678",
-          "domain"=>"mydomain.com"}]
+        response = blesta_successful_response({"license"=>"ABCDEFGH12345678",
+          "domain"=>"mydomain.com"})
         stub_faraday_request(params, response)
       end
 
